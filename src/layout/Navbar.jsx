@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { User, Settings, LogOut, MessageSquare } from 'lucide-react';
 
+
 const Navbar = () => {
   const navigate = useNavigate();
   const { authUser, logout } = useAuthStore();
@@ -103,6 +104,7 @@ const Navbar = () => {
                       <Settings className="mr-2 h-4 w-4" />
                       Settings
                     </DropdownMenuItem>
+                  
                   </DropdownMenuGroup>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem 

@@ -37,7 +37,7 @@ export default function App() {
         
         <Route path="/" element={authUser ? <Home /> : <LoginPage />} />
       <Route path="/about" element={authUser ? <About /> : <LoginPage />} />
-        <Route path="/detail" element={authUser ? <Detail /> : <LoginPage />} />
+        <Route path="/detail/:id" element={authUser ? <Detail /> : <LoginPage />} />
         <Route path='/login' element={!authUser ? <LoginPage /> : <Navigate to="/" />}></Route>
         <Route path='/register' element={!authUser ? <RegisterPage /> : <Navigate to="/" />}></Route>
       </Routes>

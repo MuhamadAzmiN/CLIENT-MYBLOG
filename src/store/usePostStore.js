@@ -3,15 +3,35 @@ import { axiosInstance } from "@/lib/axios";
 import toast from "react-hot-toast";
 export const usePostStore = create((set) => ({
     posts: [],
+    loading : false,
+    error: null,
 
     // Mengambil data post dari API
     getPost: async () => {
+        set({ loading: true });
         try {
+            // await new Promise((resolve) => setTimeout(resolve, 1000)); // testing  skeleton
             const res = await axiosInstance.get("/api/posts");
             console.log(res.data);
-            set({ posts: res.data });
+            set({ posts: res.data, loading: false });
             console.log(`Berhasil mengambil data posts`);
         } catch (e) {
+            set({ error: e, loading: false });
+            console.log(e);
+        }
+    },
+
+
+    detailPost : async (id) =>  {
+        set({ loading: true });
+        try {
+            const res = await axiosInstance.get(`/api/posts/${id}`)
+            console.log(res.data);
+            set({ posts : res.data, loading: false });
+            console.log(`Berhasil mengambil data posts`);
+            
+        }catch(e){
+            set({ error: e, loading: false });
             console.log(e);
         }
     },
@@ -33,5 +53,9 @@ export const usePostStore = create((set) => ({
         } catch (e) {
             toast.error(e.response.data.message);
         }
-    }
+    },
+    
+
+
+   
 }));

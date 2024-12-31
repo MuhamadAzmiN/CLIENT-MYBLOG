@@ -6,6 +6,7 @@ import {
     BreadcrumbPage,
     BreadcrumbSeparator,
   } from "@/components/ui/breadcrumb"
+import FormCreatePost from "@/components/FormCreatePost"
   
 const BreadcrumbNav = () => {
   return (
@@ -17,7 +18,11 @@ const BreadcrumbNav = () => {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-          <BreadcrumbLink href="/about">About</BreadcrumbLink>
+          <BreadcrumbLink href="/about">About </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+          <BreadcrumbLink> <FormCreatePost /></BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>

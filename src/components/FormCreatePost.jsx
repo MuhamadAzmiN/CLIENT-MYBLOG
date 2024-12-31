@@ -1,5 +1,4 @@
 
-import { Button } from "@/components/ui/button"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -25,6 +24,7 @@ import { useCategoryStore } from "@/store/useCategoryStore";
 import { usePostStore } from "@/store/usePostStore";
 import {  useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
+
 
 const FormCreatePost = () => {
     const { categories, getCategory } = useCategoryStore();
@@ -62,15 +62,22 @@ const FormCreatePost = () => {
         toast("Creating Post...");
         if (success === true) {
           toast.success("Post created successfully");
+          setFormData({
+            title : '',
+            content : '',
+            description : '',
+            category : ''
+          })
         }
-    }
 
     
+
+    }
   return (
     <div>
            <AlertDialog>
                   <AlertDialogTrigger asChild>
-                    <Button variant="outline">Show Dialog</Button>
+                   <a className="cursor-pointer" > Create Post</a>
                   </AlertDialogTrigger>
                   <AlertDialogContent>
                     <AlertDialogHeader>

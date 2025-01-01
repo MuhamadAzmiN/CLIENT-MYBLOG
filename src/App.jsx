@@ -10,6 +10,8 @@ import { Toaster } from "react-hot-toast"
 import { useAuthStore } from "./store/useAuthStore";
 import { useEffect } from 'react';
 import { Loader } from "lucide-react"
+import Profile from './pages/Profile';
+
 export default function App() {
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
   
@@ -24,12 +26,10 @@ export default function App() {
   
 )
 
-  
 
   return (
 
-    <div>
-  
+    <div>  
       <Navbar />
       {/* <BreadcrumbNav /> */}
       
@@ -40,6 +40,7 @@ export default function App() {
         <Route path="/detail/:id" element={authUser ? <Detail /> : <LoginPage />} />
         <Route path='/login' element={!authUser ? <LoginPage /> : <Navigate to="/" />}></Route>
         <Route path='/register' element={!authUser ? <RegisterPage /> : <Navigate to="/" />}></Route>
+        <Route path='/profile' element={authUser ? <Profile /> : <LoginPage />}></Route>
       </Routes>
       <Toaster theme="dark"
         toastOptions={{

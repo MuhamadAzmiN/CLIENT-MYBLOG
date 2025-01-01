@@ -13,9 +13,10 @@ import AuthImagePattern from "@/components/AuthImagePattern";
 export default function RegisterPage() {
   const [formData, setFormData] = useState({
     email: '',
-    rayon: '',
+    profesi: '',
     username: '',
     password: '',
+   
   });
 
 
@@ -23,8 +24,9 @@ export default function RegisterPage() {
 
   const validateForm = () => {
     if (!formData.email.trim()) return toast.error("Email is required");
-    if (!formData.rayon.trim()) return toast.error("Rayon is required");
+    if (!formData.profesi.trim()) return toast.error("Profesi is required");
     if (!formData.username.trim()) return toast.error("Username is required");
+
     if (!/\S+@\S+\.\S+/.test(formData.email)) return toast.error("Invalid email format");
     if (!formData.password) return toast.error("Password is required");
     if (formData.password.length < 6) return toast.error("Password must be at least 6 characters");
@@ -59,8 +61,8 @@ export default function RegisterPage() {
             <Input id="email" type="email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} placeholder="m@example.com" required />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="rayon">Rayon</Label>
-            <Input id="rayon" value={formData.rayon} onChange={(e) => setFormData({ ...formData, rayon: e.target.value })} type="rayon" placeholder="Cibedug 1" required />
+            <Label htmlFor="profesi">Perofesi</Label>
+            <Input id="perofesi" value={formData.profesi} onChange={(e) => setFormData({ ...formData, profesi: e.target.value })} type="perofesi" placeholder="Software Engineer" required />
           </div>
           <div className="space-y-2">
             <Label htmlFor="username">Username</Label>

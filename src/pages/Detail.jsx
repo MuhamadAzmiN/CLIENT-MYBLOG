@@ -2,6 +2,7 @@ import BreadcrumbNav from "@/layout/Breadcrumb";
 import { useEffect } from "react";
 import { usePostStore } from "@/store/usePostStore";
 import { useParams } from "react-router-dom";
+import DetailSkeleton from "@/components/DetailSkeleton";
 const Detail = () => {
   const { id } = useParams();
   const { posts, detailPost, loading } = usePostStore();
@@ -9,9 +10,6 @@ const Detail = () => {
   useEffect(() => {
     detailPost(id);
   }, [id, detailPost]);
-  
-
-
 
 
   return (
@@ -20,6 +18,7 @@ const Detail = () => {
       <main className="max-w-2xl mx-auto px-4 mt-16">
       <BreadcrumbNav />
         {/* Article Header */}
+        {loading && <DetailSkeleton />}
         <article className="space-y-8">
           <header className="space-y-6">
             <h1 className="text-4xl md:text-5xl font-bold leading-tight">
@@ -36,7 +35,7 @@ const Detail = () => {
           {/* Featured Image */}
           <figure className="space-y-4">
             <img
-              src={posts.content}
+              src={posts?.content}
               className="w-full rounded-lg"
             />
             <figcaption className="text-sm text-gray-400 italic">

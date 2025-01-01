@@ -7,7 +7,6 @@ import HomeSkeleton from "@/components/HomeSkeleton";
 import { formatPostDate, formatPostTime} from "../lib/utils"
 
 
-
 const Home = () => {
   const { posts, getPost, loading } = usePostStore();
   useEffect(() => {
@@ -21,7 +20,7 @@ const Home = () => {
         {/* Breadcrumbs */}
         <BreadcrumbNav />
 
-
+        
         <div className="space-y-12">
         {loading && <HomeSkeleton />}
 
@@ -36,15 +35,15 @@ const Home = () => {
                 </h2>
                 
                 <div className="flex items-center space-x-4 text-sm text-gray-400 mb-2">
-                  <span>{formatPostDate(post.createdAt)}</span>
+                  <span>{post.createdAt ? formatPostDate(post.createdAt) : "No Date"}</span>
                   <span>•</span>
-                  <span>{formatPostTime(post.createdAt)}</span>
+                  <span>{post.createdAt ? formatPostTime(post.createdAt) : "No Time"}</span>
                 </div>
                 {post.description && (
                   <p className="text-gray-400 mb-3">
                     {post.description}
                   </p>
-                )}
+              )}
                 <div className="flex items-center text-sm text-gray-400">
                   <Tag className="h-4 w-4 mr-2" />
                   <span>{post.tagCount}</span>
@@ -52,6 +51,12 @@ const Home = () => {
               </a>
             </article>
           ))}
+
+          {posts.length === 0 && (
+            <div className="text-gray-400 text-center mt-8">
+              <p>No posts found</p>
+            </div>
+          )}
         </div>
      
       </main>
@@ -59,6 +64,8 @@ const Home = () => {
     </div>
   );
 };
+
+
 
 
 

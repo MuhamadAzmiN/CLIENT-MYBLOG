@@ -7,7 +7,9 @@ export const useAuthStore = create((set) => ({
     authUser: null,
     isSigningUp: false,
     isLoggingIn: false,
+    userPost : [],
     isCheckingAuth: true,
+    isUpdatingProfile: false,
 
 
 
@@ -66,4 +68,33 @@ export const useAuthStore = create((set) => ({
             toast.error(e.response.data.message)
         }
     },
+
+
+    profile : async () =>  {
+        try {
+            const res = await axiosInstance.get("/api/profile/daftar-post")
+            console.log(res);
+            set({userPost : res.data})
+            console.log(`Berhasil`)
+        }catch(e){
+            toast.error(e.response.data.message)
+        }
+    },
+
+
+
+    updateImageProfile : async (image) =>  {
+        set({isUpdatingProfile : true})
+        try {
+            const res = await axiosInstance.put("/api/profile/update-profile", image)
+            console.log(res);
+            set({authUser : res.data})
+            console.log(`Berhasil`) 
+        }catch(error){
+            console.log(error)
+
+        }finally{
+            set({isUpdatingProfile : false})
+        }
+    }
 }))

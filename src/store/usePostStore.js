@@ -25,6 +25,7 @@ export const usePostStore = create((set) => ({
     detailPost : async (id) =>  {
         set({ loading: true });
         try {
+            await new Promise((resolve) => setTimeout(resolve, 2000));
             const res = await axiosInstance.get(`/api/posts/${id}`)
             console.log(res.data);
             set({ posts : res.data, loading: false });
@@ -47,8 +48,6 @@ export const usePostStore = create((set) => ({
             
             // Ambil ulang data terbaru setelah menambah post baru
             await usePostStore.getState().getPost();  // Memanggil getPost untuk mengambil data terbaru
-            
-            toast.success("Post created successfully");
             console.log(`Post berhasil dibuat`);
         } catch (e) {
             toast.error(e.response.data.message);
@@ -59,3 +58,5 @@ export const usePostStore = create((set) => ({
 
    
 }));
+
+

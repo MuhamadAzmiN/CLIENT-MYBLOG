@@ -77,7 +77,7 @@ const Navbar = () => {
               <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
                 <DropdownMenuTrigger asChild>
                   <Avatar className="h-8 w-8 cursor-pointer hover:opacity-90 transition">
-                    <AvatarImage src="https://github.com/shadcn.png" />
+                    <AvatarImage src={authUser.image ?? 'https://github.com/shadcn.png'} />
                     <AvatarFallback>
                       {authUser.username?.charAt(0) || 'U'}
                     </AvatarFallback>

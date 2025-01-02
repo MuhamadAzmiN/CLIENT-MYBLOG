@@ -1,5 +1,4 @@
 
-import { Tag } from "lucide-react";
 import BreadcrumbNav from "@/layout/Breadcrumb";
 import { usePostStore } from "@/store/usePostStore";
 import {  useEffect } from "react";
@@ -45,7 +44,7 @@ const Home = () => {
                   </p>
               )}
                 <div className="flex items-center text-sm text-gray-400">
-                  <Tag className="h-4 w-4 mr-2" />
+            
                   <span>{post.tagCount}</span>
                 </div>
               </a>

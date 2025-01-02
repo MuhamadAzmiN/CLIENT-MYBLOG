@@ -3,6 +3,9 @@ import { useEffect } from "react";
 import { usePostStore } from "@/store/usePostStore";
 import { useParams } from "react-router-dom";
 import DetailSkeleton from "@/components/DetailSkeleton";
+import { formatPostDate, formatPostTime} from "../lib/utils"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+
 const Detail = () => {
   const { id } = useParams();
   const { posts, detailPost, loading } = usePostStore();
@@ -12,6 +15,8 @@ const Detail = () => {
   }, [id, detailPost]);
 
 
+
+  
   return (
     <div className="min-h-screen bg-dark">
       {/* Main Content */}
@@ -26,9 +31,9 @@ const Detail = () => {
             </h1>
             
             <div className="flex items-center space-x-3 text-gray-400">
-              <span>1 year ago</span>
+              <span>{posts.createdAt ? formatPostDate(posts.createdAt) : "No Date"}</span>
               <span>•</span>
-              <span>10 min read</span>
+              <span>{posts.createdAt ? formatPostTime(posts.createdAt) : "No Time"}</span>
             </div>
           </header>
 
@@ -38,9 +43,18 @@ const Detail = () => {
               src={posts?.content}
               className="w-full rounded-lg"
             />
-            <figcaption className="text-sm text-gray-400 italic">
-              <span className="text-xs uppercase mr-2">PL</span>
-             {posts.author?.username}
+            <figcaption className="text-sm text-gray-400 italic flex ">
+            <div className="flex items-center space-x-2">
+              <Avatar className="mr-2">
+                <AvatarImage 
+                   
+                  src={posts.author?.image} 
+                />
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
+              <span className="text-sm  text-gray-500">{posts.author?.username}</span>
+            </div>
+
             </figcaption>
           </figure>
 

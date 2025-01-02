@@ -14,21 +14,20 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
-
 import { useEffect, useState } from "react"
-
 import { Camera, Upload } from "lucide-react"
 import toast from "react-hot-toast"
+import ProfileSkeleton from "@/components/ProfileSleleton"
 
 export default function Profile() {
-    const { authUser, userPost , updateImageProfile, profile} = useAuthStore()
+    const { authUser, userPost , updateImageProfile, profile, loading} = useAuthStore()
     const [selectedImage, setSelectedImage] = useState(null);
     const [previewUrl, setPreviewUrl] = useState(null);
 
     useEffect(() => {
         profile()
       }, [profile]);
-
+       
     useEffect(() => {
         console.log(userPost);
       }, [userPost]);
@@ -38,7 +37,7 @@ export default function Profile() {
     const handleImageSelect = async (e) => {
         const file = e.target.files[0];
         if (!file) return;
-
+        
          const reader = new FileReader();
 
         reader.readAsDataURL(file);
@@ -71,18 +70,19 @@ export default function Profile() {
       }, [selectedImage]);
 
 
-        
-    
-
     return (
+        
+
+
         <div className="min-h-[100dvh] bg-dark">
+            {loading && <ProfileSkeleton /> }
             <header className="pt-20 pb-12 px-4">
                 <div className="max-w-5xl mx-auto text-center">
                 <div className="relative mb-8">
                     {/* Profile Banner */}
                     <div className="relative w-full h-48 rounded-lg overflow-hidden">
                         <img
-                        src="https://c4.wallpaperflare.com/wallpaper/892/692/922/howl-s-moving-castle-studio-ghibli-fantasy-art-clouds-daylight-hd-wallpaper-preview.jpg"
+                        src="https://c4.wallpaperflare.com/wallpaper/158/774/427/anime-studio-ghibli-spirited-away-wallpaper-preview.jpg"
                         alt="Profile Banner"
                         className="object-cover w-full h-full"
                         />
